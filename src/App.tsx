@@ -1,24 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import classes from './css/App.module.css';
+import {NewToDo} from "./components/NewToDo";
+import { toDoListAtom } from './atoms/toDoAtoms';
+import { useAtomValue } from 'jotai';
+import ToDoList from './components/ToDoList';
 
 function App() {
+  const toDoList = useAtomValue(toDoListAtom);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.appContainer}>
+      <NewToDo />
+      <ToDoList toDoList={toDoList}/>
     </div>
   );
 }
